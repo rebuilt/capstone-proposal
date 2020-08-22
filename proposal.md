@@ -1,6 +1,4 @@
-I'd like to talk about my capstone project proposal.  
-
-
+I'd like to talk about my capstone project proposal.
 
 # Capstone project proposal outline
 
@@ -9,7 +7,8 @@ I'd like to talk about my capstone project proposal.
 This site will allow users to view a photo and the corresponding location on a map where that photo was taken. Users will be able to search for photos based on location and time and see similar photos. They will be able to see the history of a location. Or to share their photo collection with others.
 
 ## Application purpose
-The application will allow users to interact with their photos in ways that are not readily available now.  There are photo services that allow a user to see the location of the photo, i.e. google photos.  But the controls for filtering are just not there.  Imagine having photo albums readily available of all your birthdays, or Christmases.  Imagine being able to filter photos by month or season.  Or to see your personal history of a place by seeing your photos displayed on a map.  
+
+The application will allow users to interact with their photos in ways that are not readily available now. There are photo services that allow a user to see the location of the photo, i.e. google photos. But the controls for filtering are just not there. Imagine having photo albums readily available of all your birthdays, or Christmases. Imagine being able to filter photos by month or season. Or to see your personal history of a place by seeing your photos displayed on a map.
 
 ## Front end
 
@@ -100,3 +99,8 @@ Include a list of all third party services that you envisage using in your proje
 - Pagination: Kaminari
 - Deployment service: Heroku
 - Database: PostgreSQL, pg gem
+- Rails 6
+- Webpacker
+- Stimulus
+- Docker
+- Tiny slider
