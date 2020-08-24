@@ -1,6 +1,4 @@
-I'd like to talk about my capstone project proposal.
-
-# Capstone project proposal outline
+# Capstone project proposal outline - InstantNostalgia
 
 ## Project overview
 
@@ -53,54 +51,72 @@ List the important models that will need to exist in the application for it to f
 
 ### Photo
 
-- file_name
-- file_type
-- file_size
-- gps_location
-- tags
-- collection
-- user
+- file_name:string
+- url:string
+- owner:references -> Photo belongs to User
+- address:string
+- latitude:string
+- longitude:string
+- date_tags:references -> Photo has_many Date_Tags
+- location_tags:references -> Photo has_many Location_Tags
+- custom_tags:references -> Photo has_many Custom_tags
+- comments:references -> Photo has_many comments
 
 ### Album
 
-- authorized_users: users
-- user: references (owner of album)
+- title:string
+- owner:references -> Album belongs_to User
+- photos:references -> Album has_many Photos
+- shares:references -> Album has_many Users as shares
 
-### Tag
+### Date_Tag
 
-- name
-- photo_id: references
+- start_date:date
+- end_date:date
+- title:string
+
+### Location_Tag
+
+- address:string
+- latitude:string
+- longitude:string
+- title:string
+
+### Custom_tag
+
+- title:string
 
 ### Comment
 
 - body:text
-- user:references
-- photo:references
+- user:references -> Comment belongs_to User
+- photo:references -> Comment belongs_to Photo
 
 ### User
 
-- first_name
-- last_name
-- email
-- Photos
-- Album
+- username:string
+- first_name:string
+- last_name:string
+- email:string
+- password:string
+- photos:references -> User has_many Photos
+- albums:references -> User has_many Albums
 
 ## Third party services
 
 Include a list of all third party services that you envisage using in your project. For each one, indicate what they will be used for. These include:
+Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by default.
 
-- Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by default.
-
-- Active Storage - To store files and to parse exif data
-- Amazon S3
-- Google maps gem
-- Bootstrap 5 CSS
+- Active Storage - To coordinate the storing of files and to parse exif data
+- Amazon S3 - Storage endpoint
+- Geocoder gem - Upon creation of a photo record, reverse geocode the lat/long coordinates embedded in a photo to populate the address tags for the Photo
+- Google maps javascript API - Embed a dynamic map on the frontend and populate map with markers corresponding to locations where the photos were taken
+- Bootstrap 5 CSS - For styling
+- Webpacker - For packaging assets into consumable resources for the browser
+- Stimulus - For linking html elements to javascript objects
+- Tiny slider - A javascript library for populating the maps view with a row of photos.
 - Password hashing: bcrypt gem
 - Pagination: Kaminari
 - Deployment service: Heroku
 - Database: PostgreSQL, pg gem
 - Rails 6
-- Webpacker
-- Stimulus
-- Docker
-- Tiny slider
