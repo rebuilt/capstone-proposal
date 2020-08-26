@@ -73,8 +73,7 @@ List the important models that will need to exist in the application for it to f
 - title:string
 - photos:references -> Album has_many Photos
 - owner:references -> Album belongs_to User
-- shares:references -> Album has_many Users as Shares
--                 #### Album has_and_belongs_to_many Users ####
+- shares:references -> Album has_many Users
 
 ### Date_Tag
 
