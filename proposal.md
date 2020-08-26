@@ -3,7 +3,7 @@
 ## Slides
 
 - Mock ups can be viewed here: https://www.figma.com/file/i2OplB1yBWp70MF7tguSFD/Instant-Nostalgia?node-id=0%3A1
-- Database model can be viewed in the github repository: TODO: add repository
+- Database model can be viewed in the github repository: https://github.com/epfl-extension-school/capstone-proposal-wad-c5-s1-750-2181.git
 
 ## Project overview
 
