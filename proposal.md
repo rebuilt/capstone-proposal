@@ -120,6 +120,7 @@ Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by
 
 - Active Storage - To coordinate the storing of files
 - mini_magick gem - To parse Exif data
+- imageMagick - dependency of mini_magick
 - Amazon S3 - Storage endpoint
 - Geocoder gem - Upon creation of a photo record, reverse geocode the lat/long coordinates embedded in a photo to populate the address tags for the Photo
 - Google maps javascript API - Embed a dynamic map on the frontend and populate map with markers corresponding to locations where the photos were taken
