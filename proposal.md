@@ -118,7 +118,8 @@ List the important models that will need to exist in the application for it to f
 Include a list of all third party services that you envisage using in your project. For each one, indicate what they will be used for. These include:
 Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by default.
 
-- Active Storage - To coordinate the storing of files and to parse exif data
+- Active Storage - To coordinate the storing of files
+- mini_magick gem - To parse Exif data
 - Amazon S3 - Storage endpoint
 - Geocoder gem - Upon creation of a photo record, reverse geocode the lat/long coordinates embedded in a photo to populate the address tags for the Photo
 - Google maps javascript API - Embed a dynamic map on the frontend and populate map with markers corresponding to locations where the photos were taken
