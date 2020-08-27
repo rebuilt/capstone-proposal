@@ -118,25 +118,42 @@ List the important models that will need to exist in the application for it to f
 Include a list of all third party services that you envisage using in your project. For each one, indicate what they will be used for. These include:
 Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by default.
 
-- Active Storage - To coordinate the storing of files
-- mini_magick gem - To parse Exif data
-- imageMagick - dependency of mini_magick
+### External APIs
+
 - Amazon S3 - Storage endpoint
-- Geocoder gem - Upon creation of a photo record, reverse geocode the lat/long coordinates embedded in a photo to populate the address tags for the Photo
 - Google maps javascript API - Embed a dynamic map on the frontend and populate map with markers corresponding to locations where the photos were taken
-- Bootstrap 5 CSS - For styling
-- Webpacker - For packaging assets into consumable resources for the browser
+- Heroku - Deployment service
+
+### Javascript requirements
+
 - Stimulus - For linking html elements to javascript objects and binding javascript methods to html element events.
 - Tiny slider - A javascript library for populating the maps view with a row of photos.
+
+### Gem requirements
+
+- mini_magick gem - To parse Exif data
+- Geocoder gem - Upon creation of a photo record, reverse geocode the lat/long coordinates embedded in a photo to populate the address tags for the Photo
+- Kaminari - for pagination
+
+### Standalone app requirements
+
+- imageMagick - dependency of mini_magick
+
+### CSS requirements
+
+- Bootstrap 5 CSS - For styling
+
+### Rails stack
+
+- Active Storage - To coordinate the storing of files
+- Webpacker - For packaging assets into consumable resources for the browser
 - Password hashing: bcrypt gem
-- Pagination: Kaminari
-- Deployment service: Heroku
 - Database: PostgreSQL, pg gem
 - Rails 6
 
 ## Javascript interactivity
 
-### Map
+### Map - Photos#Index
 
 - The map page will include a slider full of photos. There will be buttons on either side of the slider that allow the user to move left and right through the photo previews.
   The left and right buttons will be tied to javascript functions to perform the scrolling.
