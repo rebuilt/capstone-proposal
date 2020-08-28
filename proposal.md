@@ -22,19 +22,39 @@ The application will allow users to interact with their photos in ways that are 
 3. Links to the main sections of the site with short descriptions
 4. Ability to sign in
 
-### Photos + Map page
+### Photos#Index AKA Map page
 
-1. Add a photo to a collection
-2. Filter by date
-3. Filter by tag
-4. Anyone should have the ability to comment on each Photo that has been shared with another user. Comments will have the user name and time/date of comment listed. Users should be able to edit or delete their comments. Edited comments will be automatically marked as such.
+1. Filter by date
+2. Filter by tag
 
-### Collections page
+### Photos#Show
 
-The purpose of this page is to provide a way of organizing photos. A collection can be shared with another user but never globally.
+1. View information about a photo
+2. See the photo image
+3. Anyone should have the ability to comment on each Photo that has been shared with another user. Comments will have the user name and time/date of comment listed. Users should be able to delete their comments.
 
-1. Add or remove collections
-2. Give/Remove permissions to view a collection
+### Photos#New AKA Uploads page
+
+1. This is where users upload their photos
+
+### Albums#Index
+
+The purpose of this page is to provide a way of organizing photos. A album can be shared with another user but never globally.
+
+1. Add or remove albums
+2. Add a photo(s) to an album
+
+### Shares#Index
+
+The purpose of this page is to view the albums shared with other users. Here, a user can add or remove permissions.
+
+1. Give/Remove permissions to view a albums
+
+### Shares#New
+
+1. Create a share for a particular album
+2. Search for users. Search by name or by email
+3. The share button will add permissions to view that album
 
 ### User Registration
 
@@ -48,7 +68,7 @@ Allow users to sign in using an email address
 
 ### Profile
 
-1.  User will be able to change profile information including, name, password
+1. User will be able to change profile information including, name, password
 
 ## Data structures and models
 
@@ -57,16 +77,29 @@ List the important models that will need to exist in the application for it to f
 ### Photo
 
 - file_name:string
-- url:string
-- address:string
-- latitude:string
-- longitude:string
 - date_tags:references -> Photo has_many Date_Tags
 - location_tags:references -> Photo has_many Location_Tags
 - custom_tags:references -> Photo has_many Custom_tags
 - comments:references -> Photo has_many comments
 - albums:references -> Photo has_many Albums
 - owner:references -> Photo belongs to User
+
+- #### The following attributes match the data in the photo Exif
+- date_time_digitized:datetime
+- latitude_in_degrees:string
+- longitude_in_degrees:string
+
+- #### The following attributes match the data format needed to send requests to Geocoder
+- latitude_in_decimal:float
+- longitude_in_decimal:float
+
+- #### The following attributes match the result set returned from Geocoder
+- address:string
+- city:string
+- state:string
+- state_code:string
+- country:string
+- country_code:string
 
 ### Album
 
@@ -112,6 +145,21 @@ List the important models that will need to exist in the application for it to f
 - albums:references -> User has_many Albums
 - comments:references -> User has_many Comments
   ???? User has_may Comments, through Photos ????
+
+## Lifecycle of a Photo
+
+- User navigates to upload page
+- User selects which photo(s) to save
+- Photo is routed to rails Photos_controller#create action
+- Photo is saved in the create action
+- If the photo is successfully saved, read image exif data
+- Populate the attributes of the Photo table with information parsed from image exif data
+- Convert the latitude and longitude from degree/minute/second format to degree/decimal format for Geocoder to use
+- Use geocoder gem to reverse locate an address from latitude and longitude info in the exif data
+- Populate the attributes of the Photo table with results of geocoder request
+- Create and attach Date_tags to the Photo based on the date the photo was taken
+- Create and attach Location_Tags to the Photo based on the address
+- Photo is now searchable with sql queries and ready to use in the application
 
 ## Third party services
 
@@ -161,7 +209,7 @@ Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by
 - The map will be placed on the page using javacript. The map markers will be placed corresponding to the locations of where the photos were taken. The map markers will update each time the photo set changes.
 - The photo filter 'submit' button will trigger an ajax request for a new set of photos based on the criteria selected in the filters. The response containing a new set of photos will repopulate the image preview slider and repopulate the map markers.
 
-### Albums
+### Albums#Index
 
 - Clicking the submit button will trigger an ajax request to create a new album based on the name provided. If the album was successfully created the album will be added to the chart below listing all current albums.
 - Clicking the delete button will trigger an ajax request to delete the album
