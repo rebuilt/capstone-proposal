@@ -27,15 +27,31 @@ The application will allow users to interact with their photos in ways that are 
 1. Filter by date
 2. Filter by tag
 
+#### Javascript interactivity
+
+- The map page will include a slider full of photos. There will be buttons on either side of the slider that allow the user to move left and right through the photo previews.
+  The left and right buttons will be tied to javascript functions to perform the scrolling.
+- The image previews will be clickable elements. Clicking on a photo will trigger a javascript event to display a larger version of the photo.
+- The map will be placed on the page using javacript. The map markers will be placed corresponding to the locations of where the photos were taken. The map markers will update each time the photo set changes.
+- The photo filter 'submit' button will trigger an ajax request for a new set of photos based on the criteria selected in the filters. The response containing a new set of photos will repopulate the image preview slider and repopulate the map markers.
+
 ### Photos#Show
 
 1. View information about a photo
 2. See the photo image
 3. Anyone should have the ability to comment on each Photo that has been shared with another user. Comments will have the user name and time/date of comment listed. Users should be able to delete their comments.
 
+#### Javascript interactivity
+
+- Clicking the submit button will trigger an ajax request to create a new comment. If the comment is successfully created, the comment will be placed on the page.
+
 ### Photos#New AKA Uploads page
 
 1. This is where users upload their photos
+
+#### Javascript interactivity
+
+- Allow users to drag and drop images to upload
 
 ### Albums#Index
 
@@ -44,17 +60,31 @@ The purpose of this page is to provide a way of organizing photos. A album can b
 1. Add or remove albums
 2. Add a photo(s) to an album
 
+#### Javascript interactivity
+
+- Clicking the submit button will trigger an ajax request to create a new album based on the name provided. If the album was successfully created the album will be added to the chart below listing all current albums.
+- Clicking the delete button will trigger an ajax request to delete the album
+- Clicking the add button will trigger an ajax request to add the photos to the album listed in the dropdown menu
+
 ### Shares#Index
 
 The purpose of this page is to view the albums shared with other users. Here, a user can add or remove permissions.
 
 1. Give/Remove permissions to view a albums
 
+#### Javascript interactivity
+
+- Clicking the 'stop sharing' button will trigger an ajax request to remove a user from the list of shares. If successful, the share will be removed from the page.
+
 ### Shares#New
 
 1. Create a share for a particular album
 2. Search for users. Search by name or by email
 3. The share button will add permissions to view that album
+
+#### Javascript interactivity
+
+- Clicking the 'find user' button will trigger an ajax request to return a list of user results. The users found will be added to a results div below.
 
 ### User Registration
 
@@ -89,7 +119,7 @@ List the important models that will need to exist in the application for it to f
 - latitude_in_degrees:string
 - longitude_in_degrees:string
 
-- #### The following attributes match the data format needed to send requests to Geocoder
+- #### The following attributes match the data format needed to send requests to Geocoder and the maps javascript API
 - latitude_in_decimal:float
 - longitude_in_decimal:float
 
@@ -198,35 +228,3 @@ Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by
 - Password hashing: bcrypt gem
 - Database: PostgreSQL, pg gem
 - Rails 6
-
-## Javascript interactivity
-
-### Map - Photos#Index
-
-- The map page will include a slider full of photos. There will be buttons on either side of the slider that allow the user to move left and right through the photo previews.
-  The left and right buttons will be tied to javascript functions to perform the scrolling.
-- The image previews will be clickable elements. Clicking on a photo will trigger a javascript event to display a larger version of the photo.
-- The map will be placed on the page using javacript. The map markers will be placed corresponding to the locations of where the photos were taken. The map markers will update each time the photo set changes.
-- The photo filter 'submit' button will trigger an ajax request for a new set of photos based on the criteria selected in the filters. The response containing a new set of photos will repopulate the image preview slider and repopulate the map markers.
-
-### Albums#Index
-
-- Clicking the submit button will trigger an ajax request to create a new album based on the name provided. If the album was successfully created the album will be added to the chart below listing all current albums.
-- Clicking the delete button will trigger an ajax request to delete the album
-- Clicking the add button will trigger an ajax request to add the photos to the album listed in the dropdown menu
-
-### Photo#Show
-
-- Clicking the submit button will trigger an ajax request to create a new comment. If the comment is successfully created, the comment will be placed on the page.
-
-### Photo#New
-
-- Allow users to drag and drop images to upload
-
-### Shared#Index
-
-- Clicking the 'stop sharing' button will trigger an ajax request to remove a user from the list of shares. If successful, the share will be removed from the page.
-
-### Shared#new
-
-- Clicking the 'find user' button will trigger an ajax request to return a list of user results. The users found will be added to a results div below.
