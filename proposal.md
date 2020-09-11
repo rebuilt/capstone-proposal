@@ -223,8 +223,20 @@ Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by
 
 ### Rails stack
 
+#### Production
+
 - Active Storage - To coordinate the storing of files
 - Webpacker - For packaging assets into consumable resources for the browser
 - Password hashing: bcrypt gem
 - Database: PostgreSQL, pg gem
 - Rails 6
+
+#### Development
+
+- guard/Rack-livereload - automatically reloads page on edits in the code
+- better_errors - different view of rails errors messages
+- memory_profiler - for profiling memory use
+- rack-mini-profiler - includes load times at top left of page
+- solargraph - ruby language server for vim
+- flamegraph - for profiling application
+- stackprof - required by flamegraph
