@@ -25,7 +25,7 @@ The application will allow users to interact with their photos in ways that are 
 ### Photos#Index AKA Map page
 
 1. Filter by date
-2. Filter by tag
+2. Filter by location
 
 #### Javascript interactivity
 
@@ -70,7 +70,7 @@ The purpose of this page is to provide a way of organizing photos. A album can b
 
 The purpose of this page is to view the albums shared with other users. Here, a user can add or remove permissions.
 
-1. Give/Remove permissions to view a albums
+1. Give/Remove permissions to view albums
 
 #### Javascript interactivity
 
@@ -107,12 +107,10 @@ List the important models that will need to exist in the application for it to f
 ### Photo
 
 - file_name:string
-- date_tags:references -> Photo has_many Date_Tags
-- location_tags:references -> Photo has_many Location_Tags
-- custom_tags:references -> Photo has_many Custom_tags
+- user:references -> Photo belongs to User
 - comments:references -> Photo has_many comments
-- albums:references -> Photo has_many Albums
-- owner:references -> Photo belongs to User
+- albums:references -> Photo has_and_belongs_to_many Albums
+- image:references -> Photo has_one_attached Image
 
 - #### The following attributes match the data in the photo Exif
 - date_time_digitized:datetime
@@ -134,29 +132,10 @@ List the important models that will need to exist in the application for it to f
 ### Album
 
 - title:string
-- photos:references -> Album has_many Photos
-- owner:references -> Album belongs_to User
+- user:references -> Album belongs_to User
+- photos:references -> Album has_and_belongs_to_many Photos
 - shares:references -> Album has_many Users
-
-### Date_Tag
-
-- start_date:date
-- end_date:date
-- title:string
-- photo:reference -> Date_Tag belongs to Photo
-
-### Location_Tag
-
-- address:string
-- latitude:string
-- longitude:string
-- title:string
-- photo:references -> Location_Tag belongs_to Photo
-
-### Custom_tag
-
-- title:string
-- photo:references -> Location_Tag belongs_to Photo
+- users:references -> Album has_many Users, through: :shares
 
 ### Comment
 
@@ -173,8 +152,8 @@ List the important models that will need to exist in the application for it to f
 - password:string
 - photos:references -> User has_many Photos
 - albums:references -> User has_many Albums
-- comments:references -> User has_many Comments
-  ???? User has_may Comments, through Photos ????
+- shares:references -> User has_many Shares
+- authorized_albums -> User has_many Authorized_Albums, through: :shares, source: :album
 
 ## Lifecycle of a Photo
 
@@ -187,14 +166,9 @@ List the important models that will need to exist in the application for it to f
 - Convert the latitude and longitude from degree/minute/second format to degree/decimal format for Geocoder to use
 - Use geocoder gem to reverse locate an address from latitude and longitude info in the exif data
 - Populate the attributes of the Photo table with results of geocoder request
-- Create and attach Date_tags to the Photo based on the date the photo was taken
-- Create and attach Location_Tags to the Photo based on the address
 - Photo is now searchable with sql queries and ready to use in the application
 
 ## Third party services
-
-Include a list of all third party services that you envisage using in your project. For each one, indicate what they will be used for. These include:
-Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by default.
 
 ### External APIs
 
@@ -219,7 +193,7 @@ Ruby gems or JavaScript libraries outside of those bundled with Ruby on Rails by
 
 ### CSS requirements
 
-- Bootstrap 5 CSS - For styling
+- All pages will use custom css
 
 ### Rails stack
 
